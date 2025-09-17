@@ -42,7 +42,4 @@ jobs:
              docker stop crypto_app
              docker rm crypto_app
           }
-          docker run -d --restart=always -p 7666:7666 \
-            --name crypto_app \
-            -e SECRET_KEY="${{ secrets.SECRET_KEY }}" \
-            $IMAGE_NAME
+          docker run -d --restart=always -p 7666:7666 --name crypto_app -e SECRET_KEY="${{ secrets.SECRET_KEY }}" $IMAGE_NAME
