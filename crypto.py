@@ -18,9 +18,21 @@ def generate_key():
         print("🔑 Secret key generated and saved.")
 
 def load_key():
-    """Load the existing secret key"""
-    with open(KEY_FILE, "rb") as key_file:
-        return key_file.read()
+    """Load secret key from environment variable or fallback to local file"""
+    env_key = os.getenv("SECRET_KEY")
+    if env_key:
+        print("🔑 Using secret key from environment variable")
+        return env_key.encode()
+    if os.path.exists(KEY_FILE):
+        print("🔑 Using secret key from local file")
+        with open(KEY_FILE, "rb") as key_file:
+            return key_file.read()
+    # For local dev only: generate a new key
+    key = Fernet.generate_key()
+    with open(KEY_FILE, "wb") as key_file:
+        key_file.write(key)
+    print("🔑 Generated new secret key (local dev only)")
+    return key
     
 # Function to hash a password
 def hash_password(password: str) -> str:
