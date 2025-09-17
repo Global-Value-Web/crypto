@@ -27,6 +27,7 @@ jobs:
           password: ${{ secrets.CR_PAT }}
 
       - name: Debug workspace
+        shell: powershell
         run: |
           pwd
           ls -la
