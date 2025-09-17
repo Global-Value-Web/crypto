@@ -26,7 +26,11 @@ jobs:
           username: Global-Value-Web
           password: ${{ secrets.CR_PAT }}
 
- 
+      - name: Debug workspace
+        run: |
+          pwd
+          ls -la
+
 
       - name: Build and push Docker image
         run: |
