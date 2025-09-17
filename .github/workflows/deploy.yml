@@ -26,13 +26,7 @@ jobs:
           username: Global-Value-Web
           password: ${{ secrets.CR_PAT }}
 
-      - name: Debug workspace
-        shell: powershell
-        run: |
-          pwd
-          ls -la
-
-
+    
       - name: Build and push Docker image
         run: |
           $IMAGE_NAME="ghcr.io/global-value-web/crypto_app:latest"
